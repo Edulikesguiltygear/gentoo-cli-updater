@@ -1,0 +1,32 @@
+#!/bin/bash
+echo "Welcome to gentoo updater
+choose:
+1) sync
+2) update
+3) both"
+read choice
+while [[ $choice -gt 0 ]] ; do
+  if [ $choice -lt  4 ]; then
+    case $choice in
+      1)
+        sudo emerge --sync
+        ;;
+      2)
+        sudo emerge -avuDN @world
+        ;;
+      3)
+        sudo emerge --sync && sudo emerge -avuDN @world
+        ;;
+    esac
+    echo "
+anything else?
+choose:
+1)sync
+2)update
+3)both"
+    read choice
+  elif [ $choice -gt 3 ]; then
+    echo "try again"
+    read choice
+  fi
+done
